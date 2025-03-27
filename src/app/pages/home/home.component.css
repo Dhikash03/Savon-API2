@@ -1,0 +1,34 @@
+#home {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  
+}
+#flexhome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+header {
+    background-color: #004080;
+    color: white;
+    padding: 20px;
+}
+section {
+    padding: 20px;
+}
+footer {
+    background-color: #004080;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+a {
+    color: #004080;
+    text-decoration: none;
+    font-weight: bold;
+}
