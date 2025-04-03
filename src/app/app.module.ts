@@ -20,6 +20,8 @@ import { UtilisateurComponent } from './pages/utilisateur/utilisateur.component'
 import { ModalBoxConfirmationComponent } from './shared/modal-box-confirmation/modal-box-confirmation.component';
 import { ModalIngredientPickerComponent } from './shared/modal-ingredient-picker/modal-ingredient-picker.component';
 import { RecettesComponent } from './pages/recettes/recettes.component';
+import { RadarChartComponent } from './shared/radar-chart/radar-chart.component';
+import { RecetteCalculateurComponent } from './pages/recette-calculateur/recette-calculateur.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { RecettesComponent } from './pages/recettes/recettes.component';
    UtilisateurComponent,
    ModalBoxConfirmationComponent,
    ModalIngredientPickerComponent,
-   RecettesComponent 
+   RecettesComponent,
+   RadarChartComponent,
+   RecetteCalculateurComponent 
   ],
   imports: [
     BrowserModule,

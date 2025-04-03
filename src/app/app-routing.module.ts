@@ -10,6 +10,7 @@ import { RecettesComponent } from './pages/recettes/recettes.component';
 import { UtilisateurComponent } from './pages/utilisateur/utilisateur.component';
 import { IngredientManagerPageComponent } from './pages/ingredient-manager-page/ingredient-manager-page.component';
 import { IngredientListComponent } from './shared/ingredient-list/ingredient-list.component';
+import { RecetteCalculateurComponent } from './pages/recette-calculateur/recette-calculateur.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,11 @@ const routes: Routes = [
   { path: 'utilisateur', component: UtilisateurComponent },
   { path: 'ingredient-manager', component: IngredientManagerPageComponent},
   { path: 'ingredient-list', component: IngredientListComponent},
+  { path: 'recettes', component: RecettesComponent},
+  { path: 'recette-calculateur', component: RecetteCalculateurComponent},
+
+  
+
 ];
 
 @NgModule({
