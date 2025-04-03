@@ -11,6 +11,6 @@ export class Recette {
   concentrationAlcalin: number = 0;
   qteAlcalin: number = 0;
   ligneIngredients: LigneIngredient[] = [];
-  resultat: Resultat[] = [];
+  resultats: Resultat[] = [];
 
 }

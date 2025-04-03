@@ -1,78 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalIngredientPickerComponent } from '../../shared/modal-ingredient-picker/modal-ingredient-picker.component';
-import { IngredientService } from '../../services/ingredient.service';
-import { LigneIngredient } from '../../models/ligneIngredient';
-import { RecetteDTO } from '../../models/DTO/recetteDTO';
 import { RecetteService } from '../../services/recette.service';
-import { Ingredients } from '../../models/Ingredients';
+import { Recette } from '../../models/recette';
+import { Caracteristique } from '../../models/caracteristique';
+import { RecetteDTO } from '../../models/DTO/recetteDTO';
 
+
+ 
 @Component({
-selector: 'app-recettes',
-templateUrl: './recettes.component.html',
-styleUrl: './recettes.component.css'
+  selector: 'app-recettes',
+  templateUrl: './recettes.component.html',
+  styleUrl: './recettes.component.css'
 })
-
 export class RecettesComponent implements OnInit {
-availableIngredients: Ingredients[] = []; // à alimenter via service
-selectedIngredients: LigneIngredient[] = []; // Liste des ingrédients sélectionnés
-constructor(
-private ingredientService: IngredientService,
-private modalService: NgbModal
-) {}
-/**
-* Appel du service de récupération des ingrédients à l'initialisation
-*/
-ngOnInit(): void {
-this.loadIngredients();
-}
-loadIngredients(): void {
+  recettes : Recette[] = [];
+  caracteristique : Caracteristique[] = []
 
-this.ingredientService.getAllIngredients().subscribe({
-next: (ingredients) => {
-this.availableIngredients = ingredients;
-},
-error: (err) => {
-console.error('Erreur lors du chargement des ingrédients', err);
-}
-});
-}
-/**
-* Modal de sélection des ingrédients.
-*/
-openIngredientModal(): void {
-const modalRef = this.modalService.open(ModalIngredientPickerComponent);
-modalRef.componentInstance.ingredients = this.availableIngredients;
-modalRef.result.then((selectedIngredient: Ingredients) => {
-if (selectedIngredient) {
-this.ajouterIngredient(selectedIngredient);
-}
-}).catch(() => {});
-}
-/**
-* Méthode d'ajout d'un ingrédient à la recette
-* @param ingredient Ingrédient à ajouter à la recette
-*/
-ajouterIngredient(ingredient: Ingredients): void {
-// Empêcher les doublons
-if (this.selectedIngredients.find(l => l.ingredients?.id === ingredient.id)) {
-return;
-}
-this.selectedIngredients.push({
+  constructor(private simulateurService:RecetteService ) { }
 
-  ligneIngredientId: 0, // valeur temporaire pour l'instant
-  recette: null, // sera renseigné côté backend à la soumission
-  ingredients: ingredient,
-  quantite: 0,
-  pourcentage: 0
-});
-}
-/**
-* Supprime un ingrédient préalablement choisi pour la recette en cours
-* @param index
-*/
-supprimerIngredient(index: number): void {
-this.selectedIngredients.splice(index, 1);
-}
-
+  ngOnInit(): void {
+    this.simulateurService.getAllRecettes().subscribe({
+      next: (data) => this.recettes = data,
+      error: (err) => console.error('Erreur lors du chargement des ingrédients : ', err)
+    });
+  }
+  deleteRecette(id: number | null): void {
+    if (id === null) return;
+    
+    this.simulateurService.deleteRecette(id).subscribe({
+      next: () => {
+        // Supprimer la recette de la liste locale après suppression réussie
+        this.recettes = this.recettes.filter(recette => recette.id !== id);
+        // Optionnel: afficher un message de confirmation
+        alert('Recette supprimée avec succès');
+      },
+      error: (err) => {
+        console.error('Erreur lors de la suppression de la recette:', err);
+        alert('Erreur lors de la suppression de la recette');
+      }
+    });
+  }
 }

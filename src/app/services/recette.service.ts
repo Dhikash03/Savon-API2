@@ -36,7 +36,7 @@ export class RecetteService {
      * @param recette - L'objet Recette à enregistrer.
      * @returns Un Observable contenant la recette enregistrée.
      */
-    addRecette(recette: Recette): Observable<Recette> {
+    addRecetteDTO(recette: RecetteDTO): Observable<Recette> {
       return this.http.post<Recette>(`${this.apiUrl}/recette`, recette);
     }
   

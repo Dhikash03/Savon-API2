@@ -1,5 +1,5 @@
 import { LigneIngredient } from "../ligneIngredient";
-import { LigneIngredientDTO } from "./LigneIngredientDTO";
+import { LigneIngredientDTO } from "./ligneIngredientDTO";
 
 export class RecetteDTO {
     id: number | null = null;
