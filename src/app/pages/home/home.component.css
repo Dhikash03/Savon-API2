@@ -1,34 +1,50 @@
-#home {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+/* Home Component CSS */
+/* This CSS file styles the Home component of the application */
   
-}
-#flexhome{
+  .vh-100 {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-header {
-    background-color: #004080;
-    color: white;
-    padding: 20px;
-}
-section {
-    padding: 20px;
-}
-footer {
-    background-color: #004080;
-    color: white;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-a {
-    color: #004080;
+    justify-content: flex-start;
+    padding: 2rem;
+  }
+  
+  .mt-3 {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  #flexhome {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  section {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    width: 300px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: #2e7d32;
+  }
+  
+  h2 {
+    color: #388e3c;
+  }
+  
+  a {
+    color: #1e88e5;
     text-decoration: none;
-    font-weight: bold;
-}
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
