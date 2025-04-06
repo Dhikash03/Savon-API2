@@ -1,5 +1,9 @@
-/* Home Component CSS */
-/* This CSS file styles the Home component of the application */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f7f7f7;
+    color: #333;
+  }
   
   .vh-100 {
     min-height: 100vh;
