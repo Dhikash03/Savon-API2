@@ -1,0 +1,30 @@
+/* Ces styles ne sont pas nécessaires si vous utilisez la méthode de style en ligne,
+   mais je les inclus pour référence au cas où vous voudriez revenir à une approche basée sur des classes */
+
+   .corps-gras {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .non-corps-gras {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  /* Styles pour les badges de la légende */
+  .legende-badge {
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+    display: inline-block;
+  }
+  
+  .legende-corps-gras {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .legende-non-corps-gras {
+    background-color: #f8d7da;
+    color: #721c24;
+  }

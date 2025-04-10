@@ -7,12 +7,13 @@ import { LigneIngredient } from '../../models/ligneIngredient';
 import { RecetteDTO } from '../../models/DTO/recetteDTO';
 import { RecetteService } from '../../services/recette.service';
 import { Recette } from '../../models/recette';
+
 @Component({
   selector: 'app-recette-calculateur',
   templateUrl: './recette-calculateur.component.html',
   styleUrl: './recette-calculateur.component.css'
 })
-export class RecetteCalculateurComponent {
+export class RecetteCalculateurComponent implements OnInit {
 
   // Attributs :
   // -----------
@@ -38,8 +39,8 @@ export class RecetteCalculateurComponent {
   ngOnInit(): void {
     this.loadIngredients();
   }
+  
   loadIngredients(): void {
-
     this.ingredientService.getAllIngredients().subscribe({
       next: (ingredients) => {
         this.availableIngredients = ingredients;
@@ -86,17 +87,18 @@ export class RecetteCalculateurComponent {
   }
 
   /**
-* Supprime un ingrédient préalablement choisi pour la recette en cours
-* @param index
-*/
+  * Supprime un ingrédient préalablement choisi pour la recette en cours
+  * @param index
+  */
 
   supprimerIngredient(index: number): void {
     this.selectedIngredients.splice(index, 1);
+    this.recalculerPourcentages(); // Recalculer après la suppression
   }
 
   /**
- * Recalcule les pourcentages
- */
+  * Recalcule les pourcentages
+  */
 
   recalculerPourcentages(): void {
     this.totalMasse = this.selectedIngredients.reduce((acc, ligne) => acc +
@@ -105,6 +107,15 @@ export class RecetteCalculateurComponent {
       ligne.pourcentage = this.totalMasse > 0 ? + (ligne.quantite /
         this.totalMasse * 100).toFixed(0) : 0; // Calcul les pourcentages des ingrédients
     });
+  }
+
+  /**
+  * Méthode appelée quand l'état de la case à cocher "Avec Soude" change
+  */
+  onSoudeChange(): void {
+    if (this.recetteDto.avecSoude) {
+      this.recetteDto.concentrationAlcalin = 90;
+    }
   }
 
   /**
@@ -132,7 +143,7 @@ export class RecetteCalculateurComponent {
       },
       error: (err) => {
         console.error('Erreur lors de la création de la recette :', err);
-        // TODO : afficher message d’erreur utilisateur
+        // TODO : afficher message d'erreur utilisateur
       }
     });
   }

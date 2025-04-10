@@ -1,0 +1,17 @@
+.corps-gras {
+    background-color: #d4edda; /* Vert clair */
+    color: #155724; /* Texte vert foncé */
+  }
+  
+  .non-corps-gras {
+    background-color: #f8d7da; /* Rose clair */
+    color: #721c24; /* Texte rose foncé */
+  }
+  
+  .legende-item {
+    padding: 8px;
+    border-radius: 4px;
+    margin-right: 15px;
+    display: inline-block;
+    font-weight: bold;
+  }

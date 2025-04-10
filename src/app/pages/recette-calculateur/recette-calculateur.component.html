@@ -56,7 +56,9 @@
 </div>
 <!-- Avec Soude -->
 <div class="form-check mb-3">
-    <input type="checkbox" id="avecSoude" class="form-check-input" name="avecSoude" [(ngModel)]="recetteDto.avecSoude">
+    <input type="checkbox" id="avecSoude" class="form-check-input" name="avecSoude" 
+           [(ngModel)]="recetteDto.avecSoude" 
+           (change)="onSoudeChange()">
     <label for="avecSoude" class="form-check-label">Avec Soude</label>
 </div>
 <!-- Concentration Alcalin -->

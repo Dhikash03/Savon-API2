@@ -4,20 +4,18 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalBoxConfirmationComponent } from '../modal-box-confirmation/modal-box-confirmation.component';
 
 @Component({
-selector: 'app-ingredient-list',
-templateUrl: './ingredient-list.component.html',
-styleUrl: './ingredient-list.component.css'
+  selector: 'app-ingredient-list',
+  templateUrl: './ingredient-list.component.html',
+  styleUrl: './ingredient-list.component.css'
 })
 
 export class IngredientListComponent {
 
   // Récupération des valeurs de la vue et du composant parent :
-  // -----------------------------------------------------------
   @Input()
   ingredients: Ingredients[] = [];
 
   // Envoi de valeurs vers la vue et au composant parent :
-  // -----------------------------------------------------
   @Output()
   edit = new EventEmitter<Ingredients>();
 
@@ -25,8 +23,7 @@ export class IngredientListComponent {
   delete = new EventEmitter<number>();
 
   @Output()
-  deleteAll = new EventEmitter<void>(); // Événement pour supprimer TOUS les ingrédients
-
+  deleteAll = new EventEmitter<void>();
 
   // ---------------------------------------------------------
   // Gestion de la suppression d'un ingrédient avec un modal :
@@ -34,7 +31,6 @@ export class IngredientListComponent {
   ingredientToDelete: Ingredients | null = null;
 
   constructor(private modalService: NgbModal) {}
-
 
   // Méthodes NgbModal pour ouvrir et configurer les modals :
   // --------------------------------------------------------
@@ -57,34 +53,32 @@ export class IngredientListComponent {
     })
   }
 
-
   /**
   * Modal de suppression d'un ingrédient :
   */
   openDeleteOneModal(ingredient: Ingredients) {
     const modalRef = this.modalService.open(ModalBoxConfirmationComponent, {centered: true});
     modalRef.componentInstance.titre = "Suppression d'un ingrédient";
-    modalRef.componentInstance.message = `Êtes-vous sûr de vouloir supprimer l’ingrédient ${ ingredient?.nom } ?`;
+    modalRef.componentInstance.message = `Êtes-vous sûr de vouloir supprimer l'ingrédient ${ ingredient?.nom } ?`;
     modalRef.componentInstance.btnText = "Supprimer !";
     modalRef.componentInstance.btnColor = "danger";
 
     // Gestion des actions :
     modalRef.result.then((result: string) => {
       if (result === 'execute') {
-      // Exécution de la suppression de l'ingrédient
-      this.ingredientToDelete = ingredient;
-      this.delete.emit(this.ingredientToDelete.id!);
-      this.ingredientToDelete = null;
+        // Exécution de la suppression de l'ingrédient
+        this.ingredientToDelete = ingredient;
+        this.delete.emit(this.ingredientToDelete.id!);
+        this.ingredientToDelete = null;
       }
     })
-    }
-
+  }
 
   /**
   * Émet un événement pour éditer un ingrédient.
   * @param ingredient L'ingrédient sélectionné.
   */
   editIngredient(ingredient: Ingredients): void {
-  this.edit.emit(ingredient);
+    this.edit.emit(ingredient);
   }
 }
